@@ -10,11 +10,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name="inmueble")
-@Getter
-@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Inmueble {
 
     @Id
@@ -32,18 +32,15 @@ public class Inmueble {
     private LocalDateTime fechaCreacion;
 
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Inmueble inmueble = (Inmueble) o;
-        return getId() != null && Objects.equals(getId(), inmueble.getId());
+        return Objects.equals(id, inmueble.id) && Objects.equals(nombre, inmueble.nombre) && Objects.equals(direccion, inmueble.direccion) && Objects.equals(picture, inmueble.picture) && Objects.equals(precio, inmueble.precio) && Objects.equals(fechaCreacion, inmueble.fechaCreacion);
     }
 
     @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    public int hashCode() {
+        return Objects.hash(id, nombre, direccion, picture, precio, fechaCreacion);
     }
 }

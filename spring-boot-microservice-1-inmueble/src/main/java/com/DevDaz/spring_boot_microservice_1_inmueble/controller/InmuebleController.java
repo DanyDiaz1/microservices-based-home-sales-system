@@ -17,7 +17,7 @@ public class InmuebleController {
 
     @PostMapping
     public ResponseEntity<?> saveInmueble(@RequestBody Inmueble inmueble){
-        return new ResponseEntity<>(inmuebleService.saveInmueble(inmueble), HttpStatus.CREATED);
+        return new ResponseEntity<>(inmuebleService.saveInmueble(inmueble), HttpStatus.CREATED);;
     }
 
     @DeleteMapping("{inmuebleID}")
